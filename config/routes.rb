@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
+  
   namespace :admins do
     get 'homes/top'
-  end
-  namespace :admins do
-    get 'ho'
-    
+    resources :items, only: [:index,:new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :new, :create, :show, :edit, :update]
   end
   
      devise_for :admins, controllers: {
