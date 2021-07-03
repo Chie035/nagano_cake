@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <h3><%= @costomer.last_name %><%= @costomer.first_name %>さんの会員詳細</h3>
+    </div>
+    <div class="row">
+        <div class="costomer-box">
+            <table>
+                <tbody>
+                    <tr></tr>
+                    <tr>
+                        <td>会員ID</td>
+                        <td><%= @costomer.id %></td>
+                    </tr>
+                    <tr>
+                        <td>氏名</td>
+                        <td><%= @costomer.last_name %>　<%= @costomer.first_name %></td>
+                    </tr>
+                    <tr>
+                        <td>フリガナ</td>
+                        <td><%= @costomer.last_name_kana %>　<%= @costomer.first_name_kana %></td>
+                    </tr>
+                    <tr>
+                        <td>郵便番号</td>
+                        <td><%= @costomer.postal_code %></td>
+                    </tr>
+                    <tr>
+                        <td>住所</td>
+                        <td><%= @costomer.address %></td>
+                    </tr>
+                    <tr>
+                        <td>電話番号</td>
+                        <td><%= @costomer.telephone_number %></td>
+                    </tr>
+                    <tr>
+                        <td>メールアドレス</td>
+                        <td><%= @costomer.email %></td>
+                    </tr>
+                    <tr>
+                        <td>会員ステータス</td>
+                        <td><%= @costomer.is_active %></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><%= link_to "編集する", edit_admins_costomer_path, class:"btn btn-success" %></td>
+                        <td><%= link_to "注文履歴一覧を見る", admins_homes_top_path, class:"btn btn-primary" %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
