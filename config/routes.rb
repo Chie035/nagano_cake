@@ -24,8 +24,16 @@ Rails.application.routes.draw do
     root to: "homes#top"
     
     scope module: :public do
+    devise_for :costomers
+    
     resources :items, only: [:index, :show]
-     devise_for :costomers
+    
+    get "/mypage" => "costomers#show"
+    get "/mypage/edit" => "costomers#edit"
+    get "mypage/resign" => "costomers#resign"
+    get "mypage/update" => "costomers#upda"
+    
+   
     end
   
   

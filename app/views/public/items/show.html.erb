@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <h2>商品詳細</h2>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <%= attachment_image_tag @item, :image, :fill, 200,200 %>
+        </div>
+        <div class="col-md-8 offset-1">
+            <div class="item-body">
+                <h4><%= @item.name %></h4>
+                <p><%= @item.introduction %></p></br>
+                </br>
+                <p class="d-inline-block"><strong>￥<%= @item.add_tax_price.to_s(:delimited) %></strong></p><p class="small d-inline">(税込)</p>
+            </div>
+        </div>
+    </div>
+</div>
