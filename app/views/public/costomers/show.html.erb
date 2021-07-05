@@ -1,5 +1,38 @@
 <div class="container">
     <div class="row">
+        <h3>マイページ</h3>
+    </div>
+    <div class="row">
+        <h4>登録情報</h4>
+        <%= link_to "編集する", edit_costomers_path, class:"btn btn-success ml-3" %>
         
+        <table class="table border">
+            <tbody>
+                <tr>
+                    <td class="table-active">氏名</td>
+                    <td><%= @costomer.last_name %>　<%=@costomer.first_name %></td>
+                </tr>
+                <tr>
+                    <td class="table-active">カナ</td>
+                    <td><%= @costomer.last_name_kana %>　<%= @costomer.first_name_kana %></td>
+                </tr>
+                <tr>
+                    <td class="table-active">郵便番号</td>
+                    <td><%= @costomer.postal_code %></td>
+                </tr>
+                <tr>
+                    <td class="table-active">住所</td>
+                    <td><%= @costomer.address %></td>
+                </tr>
+                <tr>
+                    <td class="table-active">電話番号</td>
+                    <td><%= @costomer.telephone_number %></td>
+                </tr>
+                <tr>
+                    <td class="table-active">メールアドレス</td>
+                    <td><%= @costomer.email %></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

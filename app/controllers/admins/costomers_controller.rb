@@ -18,7 +18,7 @@ class Admins::CostomersController < ApplicationController
     end
     
     
-    private
+    protected
      def costomer_params
          params.require(:costomer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email, :is_active)
      end

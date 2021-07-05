@@ -1,13 +1,11 @@
 <div class="container">
     <div class="row">
-        <h3><%= @costomer.last_name %><%= @costomer.first_name %>さんの会員情報編集</h3>
+        <h3>会員情報編集</h3>
     </div>
     
     <div class="row">
         <div class="col-md-10 offset-2">
-            <%= form_with model: @costomer, url: admins_costomer_path, local:true do |f| %>
-               <p>会員ID</p>
-               <%= @costomer.id %>
+            <%= form_with model: @costomer, url: costomers_path, local:true do |f| %>
      
                <p>名前</p>
               <div class="form-group">
@@ -54,10 +52,14 @@
              </div>
 
 
-             <div class="actions">
-             <%= f.submit "編集する", class:"btn btn-success" %>
+             <div class="actions d-inline-block">
+             <%= f.submit "編集内容を保存", class:"btn btn-success" %>
+             </div>
+             <div class="d-inline-block ml-5">
+                 <%= link_to "退会する", resign_costomers_path, class:"btn btn-danger" %>
              </div>
           <% end %>
+             
         </div>
     </div>
 </div>

@@ -28,14 +28,14 @@ Rails.application.routes.draw do
     
     resources :items, only: [:index, :show]
     
-    get "/mypage" => "costomers#show"
-    get "/mypage/edit" => "costomers#edit"
-    get "mypage/resign" => "costomers#resign"
-    get "mypage/update" => "costomers#upda"
-    
-   
+    resource :costomers, :path => "mypage", only: [:show, :edit, :update] do
+      collection do
+        get :resign
+        patch :withdraw
+      end
     end
-  
+     
+   end
   
   
 end

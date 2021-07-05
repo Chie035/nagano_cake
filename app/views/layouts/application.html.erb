@@ -14,7 +14,9 @@
       <nav>
         <ul>
           <% if costomer_signed_in? %>
-          <li><a href="#">マイページ</a></li>
+          <li>
+            <%= link_to "マイページ", costomers_path %>
+          </li>
           <li>
             <%= link_to "商品一覧", items_path %>
           </li>
@@ -63,7 +65,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="mx-auto">
+          <div class="mx-auto mt-5">
             <p>CopyRight NaganoCake</p>
           </div>
         </div>
