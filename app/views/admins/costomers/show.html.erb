@@ -37,7 +37,12 @@
                     </tr>
                     <tr>
                         <td>会員ステータス</td>
-                        <td><%= @costomer.is_active %></td>
+                        <td><%if @costomer.is_active == true %>
+                        <p class="text-success">有効</p>
+                        <% else %>
+                        <p>退会</p>
+                        <% end %>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>

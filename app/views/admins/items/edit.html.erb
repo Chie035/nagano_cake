@@ -31,7 +31,10 @@
             </div>
             <div class="form_group">
                 <label for="is_active">販売ステータス</label>
-                
+               <%= f.radio_button :sales_status, :true %>
+               <%= f.label :is_active_true, '販売中' %>
+               <%= f.radio_button :is_active, :false, class:"ml-3" %>
+               <%= f.label :is_active_false, '販売停止中' %>
             </div>
             <div class="action">
                 <%= f.submit "編集する", class:"btn btn-success" %>

@@ -7,5 +7,5 @@ class Item < ApplicationRecord
          (self.price * 1.08).round
     end
     
-    #enum is_active: {"販売中":true, "販売停止中":false}
+   # enum is_active: {"販売中":true, "販売停止中":false}
 end

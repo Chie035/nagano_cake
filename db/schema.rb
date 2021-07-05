@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_032110) do
+ActiveRecord::Schema.define(version: 2021_07_05_092417) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 2021_07_05_032110) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "admin_id"
+    t.boolean "is_active", default: true, null: false
     t.index ["admin_id"], name: "index_items_on_admin_id"
   end
 
