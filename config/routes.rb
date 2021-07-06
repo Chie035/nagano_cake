@@ -28,11 +28,14 @@ Rails.application.routes.draw do
     
     resources :items, only: [:index, :show]
     
+    resources :addresses, only:[:index, :create, :edit, :update, :destroy]
+    
     resource :costomers, :path => "mypage", only: [:show, :edit, :update] do
       collection do
         get :resign
         patch :withdraw
       end
+    
     end
      
    end
