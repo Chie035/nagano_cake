@@ -20,7 +20,9 @@
           <li>
             <%= link_to "商品一覧", items_path %>
           </li>
-          <li><a href="#">カート</a></li>
+          <li>
+            <%= link_to "カート", cart_items_path %>
+          </li>
           <li>
             <%= link_to "ログアウト", destroy_costomer_session_path, method: :delete %>
           </li>

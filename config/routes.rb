@@ -28,7 +28,20 @@ Rails.application.routes.draw do
     
     resources :items, only: [:index, :show]
     
-    resources :addresses, only:[:index, :create, :edit, :update, :destroy]
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
+    
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
+      collection do
+        post :remove_item
+      end
+    end
+    
+    resources :orders, only: [:new, :create, :show, :index] do
+      collection do
+        get :confirm
+        get :complete
+      end
+    end
     
     resource :costomers, :path => "mypage", only: [:show, :edit, :update] do
       collection do
