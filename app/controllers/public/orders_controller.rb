@@ -1,9 +1,14 @@
 class Public::OrdersController < ApplicationController
     
     def new
+        @order = Order.new
+        @address = Address.new
     end
     
     def create
+        @order = Order.new(order_params)
+        @order.save
+        redirect_to items_path
     end
     
     def confirm

@@ -4,15 +4,6 @@ class Public::CartItemsController < ApplicationController
          @cart_items = current_costomer.cart_items
     end
     
-    def update
-        @cart_item = current_costomer.cart_item
-        @cart_item.update(cart_item_params)
-        redirect_to cart_items_path
-    end
-    
-    def remove_item
-    end
-    
     def create
         @cart_item = CartItem.new(cart_item_params)
         
@@ -21,6 +12,15 @@ class Public::CartItemsController < ApplicationController
         
         @cart_item.save
         redirect_to cart_items_path
+    end
+    
+    def update
+        @cart_item = current_costomer.cart_item.find(params[:id])
+        @cart_item.update(cart_item_params)
+        redirect_to cart_items_path
+    end
+    
+    def remove_item
     end
     
     def destroy
