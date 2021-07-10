@@ -17,7 +17,7 @@
             <%= f.label :payment_method, "銀行振込" %>
             </div>
             
-            <% end %>
+            <%# end %>
         </div>
     </div>
         
@@ -26,6 +26,19 @@
             
             <h5>お届け先</h5>
             
+            <div class="form-group">
+                <%= f.radio_button :postal_code, :address, :name %>
+                <%= f.label :postal_code, :address, :name, "ご自身の住所" %>
+                <p>〒<%= @order.costomer.postal_code %>　<%=@order.costomer.address %></p>
+                <%= @order.costomer.last_name %><%= @order.costomer.first_name %>
+            </div>
+            
+            <div class="from-group">
+                <label>登録先の住所</label>
+            </div>
+            
+            <div class="form-group">
+            <div class="new-address-box">
             <%= form_with model: @address, url: addresses_path, local:true do |f| %>
             
             <div class="form-group">
@@ -42,6 +55,11 @@
             </div>
             
             <% end %>
+            </div>
+            
+            </div>
+            <% end %>
+            
         </div>
     </div>
     
