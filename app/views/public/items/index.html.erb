@@ -6,11 +6,13 @@
         <div class="row">
         <div class="items-box flex">
             <% @items.each do |item| %>
+            <% if item.is_active? %>
             <div class="item-box d-inline-block ml-3">
                 <%= attachment_image_tag item, :image, :fill, 150, 150 %></br>
                 <%= link_to item_path(item.id) do %><%= item.name %><% end %></br>
                 <p>¥<%= item.add_tax_price.to_s(:delimited) %>円</p>
             </div>
+            <% end %>
             <% end %>
         </div>
     </div>

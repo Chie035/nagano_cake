@@ -7,10 +7,11 @@ class Public::CartItemsController < ApplicationController
     def create
         @cart_item = CartItem.new(cart_item_params)
         
+        
         @cart_item.item_id = Item.find_by(id: params[:cart_item][:item_id]).id
         @cart_item.costomer_id = current_costomer.id
         
-        @cart_item.save
+        @cart_item.save!
         redirect_to cart_items_path
     end
     
@@ -22,7 +23,7 @@ class Public::CartItemsController < ApplicationController
     
     def destroy_all
         @cart_items = current_costomer.cart_items
-        @cart_items.destroy
+        @cart_items.destroy_all
         redirect_to costomers_path
     end
     

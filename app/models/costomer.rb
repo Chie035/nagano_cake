@@ -10,5 +10,13 @@ class Costomer < ApplicationRecord
 
   #boolean型の場合はenumではなくviewにif文で書く
   #enum is_active: { "有効":true, "退会":false}
+  def full_address
+    self.postal_code + self.address + self.last_name + self.first_name
+  end
+  
+  def full_name
+    self.last_name + self.first_name
+  end
+  
   
 end

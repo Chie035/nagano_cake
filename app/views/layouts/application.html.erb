@@ -15,6 +15,11 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
         <a class="nav-brand py-2" href="/"><%= image_tag("logo.png") %></a>
+        <% if costomer_signed_in? %>
+        <div class="name-box ml-5">
+          <p>ようこそ <%= current_costomer.last_name %>さん！</p>
+        </div>
+        <% end %>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

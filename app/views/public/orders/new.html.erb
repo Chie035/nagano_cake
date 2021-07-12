@@ -5,7 +5,7 @@
     
     <div class="row">
         <div class="paymethod-box">
-            <%= form_with model: @order, url: orders_path, local:true do |f| %>
+            <%= form_with model: @order, url: confirm_orders_path, local:true do |f| %>
             
             <h5>支払方法</h5>
             <div class="form-group">
@@ -27,37 +27,42 @@
             <h5>お届け先</h5>
             
             <div class="form-group">
-                <%= f.radio_button :postal_code, :address, :name %>
-                <%= f.label :postal_code, :address, :name, "ご自身の住所" %>
-                <p>〒<%= @order.costomer.postal_code %>　<%=@order.costomer.address %></p>
-                <%= @order.costomer.last_name %><%= @order.costomer.first_name %>
+                <%= f.radio_button :address_option, 1 %>
+                <%= f.label :address_option, "ご自身の住所" %>
+                <p class="mb-0">〒<%= current_costomer.postal_code %>　<%= current_costomer.address %></p>
+                <%= current_costomer.full_name %>
+                <%#= current_costomer.full_address %>　<%#=←※モデルで定義してあるので名前・住所・郵便番号すべてが一括表示される  %>
+            <div class="from-group mt-3">
+                <%= f.radio_button :address_option, 2 %>
+                <%= f.label :address_option, "登録先の住所" %>
+                <p><%= f.collection_select(:address, @addresses, :id, :full_address) %></p>
             </div>
             
-            <div class="from-group">
-                <label>登録先の住所</label>
-            </div>
-            
-            <div class="form-group">
+            <div class="form-group mt-3">
+                <%= f.radio_button :address_option, 3 %>
+                <%=f.label :address_option, "新しい住所" %>
+                
             <div class="new-address-box">
-            <%= form_with model: @address, url: addresses_path, local:true do |f| %>
+            <%#= form_with model: @address, url: addresses_path, local:true do |f| %>
             
             <div class="form-group">
-            <label for ="postal_code">郵便番号（ハイフンなし）</label>
-            <%= f.text_field :postal_code %>
+              <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+              <%= f.text_field :postal_code %>
             </div>
             <div class="form-group">
-            <label for ="address">住所</label>
-            <%= f.text_field :address %>
+              <%= f.label :address, "住所" %>
+              <%= f.text_field :address %>
             </div>
             <div class="form-group">
             <label for="name">宛名</label>
             <%= f.text_field :name %>
             </div>
-            
-            <% end %>
+           
+            <div class="action">
+            <%= f.submit "確認画面へ進む", class:"btn btn-primary mt-3" %>
             </div>
             
-            </div>
+            
             <% end %>
             
         </div>
