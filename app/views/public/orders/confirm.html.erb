@@ -5,7 +5,7 @@
     
     <div class="row">
         <div class="col-md-8 offset-1">
-        <table class="table border">
+        <table class="table">
             <thead>
                 <tr class="active">
                     <th>商品名</th>
@@ -14,7 +14,31 @@
                     <th>小計</th>
                 </tr>
                 </thead>
->
+                <tbody>
+                    <tr>
+                        <% @sum = 0 %>
+                        <% current_costomer.cart_items.each do |cart_item| %>
+                        <td>
+                            <%= attachment_image_tag cart_item.item, :image, :fill, 60, 60 %>
+                            <%= cart_item.item.name %>
+                        </td>
+                        <td>
+                            <%= cart_item.item.add_tax_price.to_s(:delimited)%>
+                        </td>
+                        <td>
+                            <%= cart_item.amount %>
+                        </td>
+                        <td>
+                            <%= cart_item.item.add_tax_price * cart_item.amount %>
+                        </td>
+                        <td>
+                            <% @sum += cart_item.add_tax_price * cart_item.amount %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+                
+
         </table>
         </div>
         
@@ -27,11 +51,11 @@
                     </tr>
                     <tr>
                         <th>商品合計</th>
-                        <td><%#= @sum %></td>
+                        <td><%= @sum %></td>
                     </tr>
                     <tr>
                         <th>請求金額</th>
-                        <td><%#= @order.shipping_cost + @sum %></td>
+                        <td><%= @order.shipping_cost + @sum %></td>
                     </tr>
                 </tbody>
             </table>
@@ -45,11 +69,18 @@
     
     <div class="row">
         <h6>お届け先</h6>
-        <p class="ml-3">〒<%= @order.postal_code %></p>
-        <p class="ml-3"><%= @order.name %></p>
+        <p class="ml-3">〒<%= @order.postal_code %> <%= @order.address %></br>
+        <%= @order.name %></p>
     </div>
     
     <div class="row">
-        <%= link_to "注文を確定する", url: orders_path, class:"btn btn-primary" %>
+       <%= form_with model: @order, local:true do |f| %>
+       <%= f.hidden_field :payment_method, value: @order.payment_method %>
+       
+       <%= f.hidden_field :name, value: @order.name %>
+       <%= f.hidden_field :postal_code, value: @order.postal_code %>
+       <%= f.hidden_field :address, value: @order.address %>
+       <%= f.submit "注文を確定する", class:"btn btn-primary" %>
+       <% end %>
     </div>
 </div>
