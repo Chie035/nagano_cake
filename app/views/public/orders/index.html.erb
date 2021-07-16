@@ -32,7 +32,13 @@
                         <% end %>
                     </td>
                     <td>
-                        <%#=@order.price %>円
+                        <% @sum = 0 %>
+                            <% order.order_items.each do |order_item| %>
+                            <% order_item.add_tax_price * order_item.amount %>
+                            <% @sum += order_item.add_tax_price * order_item.amount %>
+                            <% end %>
+                            <% @sum %>
+                            <%= order.shipping_cost + @sum %>円
                     </td>
                     <td>
                         ステータス

@@ -52,7 +52,6 @@ class Public::OrdersController < ApplicationController
     
     def index
         @orders = current_costomer.orders.all
-        @order.costomer_id = current_costomer.id
         @order_items = OrderItem.all
     end
     

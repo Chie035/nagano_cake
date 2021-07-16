@@ -8,6 +8,4 @@ class Order < ApplicationRecord
         800
     end
     
-    
-    
 end
