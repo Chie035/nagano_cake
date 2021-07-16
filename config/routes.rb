@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index,:new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :new, :create, :show, :edit, :update]
     resources :costomers, only: [:index, :show, :edit, :update]
+    resources :order, only: [:show, :update]
   end
   
      devise_for :admins, controllers: {
@@ -41,7 +42,10 @@ Rails.application.routes.draw do
         post :confirm
         get :complete
       end
+  
     end
+    
+     resources :order_items, only: [:create]
     
     resource :costomers, :path => "mypage", only: [:show, :edit, :update] do
       collection do
