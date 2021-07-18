@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index,:new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :new, :create, :show, :edit, :update]
     resources :costomers, only: [:index, :show, :edit, :update]
-    resources :order, only: [:show, :update]
+    resources :orders, only: [:show, :update]
   end
   
      devise_for :admins, controllers: {

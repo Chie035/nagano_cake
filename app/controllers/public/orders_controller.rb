@@ -60,9 +60,9 @@ class Public::OrdersController < ApplicationController
         @order_items = @order.order_items.all
     end
     
-    private
+    protected
     def order_params
-        params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :price)
+        params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :price, :order_re)
     end
     
     #def order_item_params

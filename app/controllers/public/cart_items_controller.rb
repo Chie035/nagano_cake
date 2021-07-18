@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+    before_action :authenticate_costomer!
     
     def index
          @cart_items = current_costomer.cart_items
@@ -41,6 +42,7 @@ class Public::CartItemsController < ApplicationController
        redirect_to cart_items_path
     end
     
+  
     private
     def cart_item_params
         params.require(:cart_item).permit(:amount, :item_id)

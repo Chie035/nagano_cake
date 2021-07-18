@@ -1,20 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     
-
-   def after_sign_in_path_for(resources)
-       case resource
-       when Admin
-        admins_homes_top_path
-        when Costomer
-            root_path
-       end
-   end
-   
-  #if costomer.signed_in?
-       
-    #before_action :authenticate_costomer!, except: [:top, :about, :index, :show]
-   #end
    
     protected
     def configure_permitted_parameters

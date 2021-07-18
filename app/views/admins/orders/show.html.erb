@@ -1,5 +1,42 @@
 <div class="container">
     <div class="row">
-        
+        <h4>注文履歴詳細</h4>
+    </div>
+    
+    <div class="row">
+        <table>
+            <tbody>
+                <tr>
+                    <th>購入者</th>
+                    <td>
+                        <%#= link_to admins_costomer(@order.costomer.id) do %>
+                        <%= @order.costomer.full_name %>
+                        <%# end %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>注文日</th>
+                    <td><%= @order.created_at.strftime('%y/%m/%d') %></td>
+                </tr>
+                <tr>
+                    <th>配送先</th>
+                    <td><%= @order.address_only %></br>
+                        <%= @order.name %></td>
+                </tr>
+                <tr>
+                    <th>支払方法</th>
+                    <td><%= @order.payment_method %></td>
+                </tr>
+                <tr>
+                    <th>注文ステータス</th>
+                    <td>
+                        <%= form_with model: @order, url: admins_order_path, method: :patch, local:true do |f| %>
+                        <%= f.select :order_received, options_for_select(Order.order_receiveds.keys) %>
+                        <%= f.submit "編集", class:"btn btn-success" %>
+                        <% end %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
