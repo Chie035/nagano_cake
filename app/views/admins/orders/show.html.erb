@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="row">
+        <h4>注文履歴詳細</h4>
+    </div>
+    
+    <div class="row">
+        <table>
+            <tbody>
+                <tr>
+                    <th>購入者</th>
+                    <td>
+                        <%#= link_to admins_costomer(@order.costomer.id) do %>
+                        <%= @order.costomer.full_name %>
+                        <%# end %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>注文日</th>
+                    <td><%= @order.created_at.strftime('%y/%m/%d') %></td>
+                </tr>
+                <tr>
+                    <th>配送先</th>
+                    <td><%= @order.address_only %></br>
+                        <%= @order.name %></td>
+                </tr>
+                <tr>
+                    <th>支払方法</th>
+                    <td><%= @order.payment_method %></td>
+                </tr>
+                <tr>
+                    <th>注文ステータス</th>
+                    <td>
+                        <%= form_with model: @order, url: admins_order_path(@order), method: :patch, local:true do |f| %>
+                        <%= f.select :order_received, Order.order_receiveds.keys.map {|k| [k, k]} %>
+                        <%= f.submit "編集", class:"btn btn-success" %>
+                        <% end %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr class="table-active">
+                        <th>商品名</th>
+                        <th>単価（税込）</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                        <th>制作ステータス</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                         <% @order_items.each do |order_item| %>
+                    <tr>
+                        <td>
+                            <%= order_item.item.name %>
+                        </td>
+                        <td>
+                            <%= order_item.add_tax_price %>
+                        </td>
+                        <td>
+                            <%= order_item.amount %>
+                        </td>
+                        <td>
+                            <%= order_item.add_tax_price * order_item.amount %>
+                        </td>
+                        <td>
+                            <%= form_with model: order_item, url: admins_order_item_path(order_item), method: :patch, local:true do |f| %>
+                            <%= f.select :production, OrderItem.productions.keys.map {|k| [k, k]} %>
+                        
+                       
+                            <%= f.submit "編集", class:"btn btn-success" %>
+                            <% end %>
+                        </td>
+                    </tr>
+                        <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3 offset-1">
+            <table class="mt-5">
+                <tbody>
+                    <tr>
+                        <th>商品合計</th>
+                        <td><% @sum = 0 %>
+                            <% @order_items.each do |order_item| %>
+                            <% order_item.add_tax_price * order_item.amount %>
+                            <% @sum += order_item.add_tax_price * order_item.amount %>
+                            <% end %>
+                            <%= @sum %>円</td>
+                    </tr>
+                    <tr>
+                        <th>送料</th>
+                        <td><%= @order.shipping_cost %>円</td>
+                    </tr>
+                    <tr>
+                        <th>請求金額合計</th>
+                        <td><%= @order.shipping_cost.to_i + @sum.to_i %>円</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

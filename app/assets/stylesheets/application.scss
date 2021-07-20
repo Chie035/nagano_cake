@@ -14,3 +14,11 @@
  *= require_self
  */
  @import "bootstrap";
+
+.top-text-box{
+    padding-top: 120px;
+    background-image: url("top.jpg");
+    height: 250px;
+    background-size: cover;
+    background-position: bottom;
+}
