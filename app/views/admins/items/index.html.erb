@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <h3>商品一覧</h3>
+        <%= link_to "＋", new_admins_item_path, class:"btn-primary rounded-circle p-0 ml-5" %>
+    </div>
+    <div class="row">
+        <div class="items-box">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>商品ID</th>
+                        <th>商品名</th>
+                        <th>税抜価格</th>
+                        <th>ジャンル</th>
+                        <th>販売ステータス</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% @items.each do |item| %>
+                        <td>
+                            <%= item.id %>
+                        </td>
+                        <td>
+                            <%= link_to admins_item_path(item.id) do %><%= item.name %><% end %>
+                        </td>
+                        <td>
+                            <%= item.price %>
+                        </td>
+                        <td>
+                            <%= item.genre.name %>
+                        </td>
+                        <td>
+                            <% if item.is_active == true %>
+                            <p class="text-success">販売中</p>
+                            <% else %>
+                            <p>販売停止中</p>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="mx-auto">
+            <%= paginate @items %>
+        </div>
+    </div>
+</div>
