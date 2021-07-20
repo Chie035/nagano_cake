@@ -6,6 +6,17 @@
     </div>
     
     <div class="row">
+        <div class="text-danger">
+          <% if @item.errors.any? %>
+          <%= @item.errors.count %>件のエラーが発生しました</br>
+          <% @item.errors.full_messages.each do |message| %>
+            <%= message %>
+          <% end %>
+          <% end %>
+        </div>
+    </div>
+    
+    <div class="row">
         <div class="form-box">
             <%= form_with model: @item, url: admins_item_path(@item.id), local:true do |f| %>
             

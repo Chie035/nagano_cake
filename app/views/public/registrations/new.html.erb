@@ -3,6 +3,8 @@
      <h2 class="background-secondary">新規登録</h2>
   </div>
   
+   <%= render "devise/shared/error_messages", resource: resource %>
+  
   <div class="row">
     <div class="col-md-10 mx-auto">
      <%= form_with model: @costomer, url: costomer_registration_path, id: "new_costomer", class:"new_costomer", local:true do |f| %>

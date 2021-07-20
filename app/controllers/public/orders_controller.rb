@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
     def new
         @order = Order.new
         @addresses = current_costomer.addresses
-        #@address = Address.new
+        #@address1 = Address.new
         @order_item = OrderItem.new       
     end
     
@@ -23,6 +23,13 @@ class Public::OrdersController < ApplicationController
              @order.name = select_address.name
              @order.postal_code = select_address.postal_code
              @order.address = select_address.address
+        when "3"
+             @new_address = current_costomer.addresses.new
+             @new_address.name = params[:order][:name]
+             @new_address.postal_code = params[:order][:postal_code]
+             @new_address.address = params[:order][:address]
+        
+        
         end
         
     end
@@ -31,8 +38,16 @@ class Public::OrdersController < ApplicationController
         @order = Order.new(order_params)
         @addresses = current_costomer.addresses
         @order.costomer_id = current_costomer.id
-        
         @order.save
+        
+        @new_address = current_costomer.addresses.new
+        @new_address.name = params[:order][:name]
+        @new_address.postal_code = params[:order][:postal_code]
+        @new_address.address = params[:order][:address]
+        @new_address.save
+        
+       
+        
         
         current_costomer.cart_items.each do |cart_item|
             @order_item = @order.order_items.new
@@ -51,7 +66,7 @@ class Public::OrdersController < ApplicationController
     end
     
     def index
-        @orders = current_costomer.orders.all
+        @orders = current_costomer.orders.all.reverse_order
         @order_items = OrderItem.all
     end
     
@@ -62,8 +77,10 @@ class Public::OrdersController < ApplicationController
     
     protected
     def order_params
-        params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :price, :order_re)
+        params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :price, :order_received)
     end
+    
+   
     
     #def order_item_params
        # params.require(:order_item).permit(:amount, :price, :item_id)
